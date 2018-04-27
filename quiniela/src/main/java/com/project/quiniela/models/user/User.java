@@ -44,8 +44,7 @@ public class User implements Serializable {
 	
 	
 	@Column(name = "ESTATUS")
-	@Enumerated(EnumType.STRING)
-	private EstatusUsuario estatus;
+	private boolean estatus;
 	
 	
 	
@@ -103,13 +102,13 @@ public class User implements Serializable {
 
 
 
-	public EstatusUsuario getEstatus() {
+	public boolean getEstatus() {
 		return estatus;
 	}
 
 
 
-	public void setEstatus(EstatusUsuario estatus) {
+	public void setEstatus(boolean estatus) {
 		this.estatus = estatus;
 	}
 
