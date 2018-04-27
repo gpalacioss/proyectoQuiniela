@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: quiniela
+    
+# Configuracion del dataSource    
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/quiniela?autoReconnect=true
+    username: root
+    password: Galletitas69/
+    tomcat:
+      max-active: 10
+      max-idle: 5
+      max-wait: 1
+      
+      
+#Configuracion con Hibernate
+
+#Permite que el sql se muestre en la consola
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    
+    
