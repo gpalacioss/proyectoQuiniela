@@ -6,7 +6,14 @@ import { AppComponent } from '../../app.component';
 
 
 const routes: Routes = [
+  /**
+   * redirecciona al appComponent que es la ruta principal cuando le ponen un espacio
+   */
   { path: '', redirectTo: '/appComponent', pathMatch: 'full'},
+
+  /**
+   * redirecciona al appComponent que es la ruta principal
+   */
   { path: 'appComponent', component: AppComponent}
 
 ];
@@ -16,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
