@@ -44,13 +44,13 @@ public class User implements Serializable {
 	
 	
 	@Column(name = "ESTATUS")
-	private boolean estatus;
+	private boolean estatus = true;
 	
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
-	private Profile perfil;
+	//@ManyToOne
+	//@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
+	//private Profile perfil;
 
 
 
@@ -112,16 +112,5 @@ public class User implements Serializable {
 		this.estatus = estatus;
 	}
 
-
-
-	public Profile getPerfil() {
-		return perfil;
-	}
-
-
-
-	public void setPerfil(Profile perfil) {
-		this.perfil = perfil;
-	}
 
 }

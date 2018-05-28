@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -32,6 +33,22 @@ public class UserController {
 		
 		System.out.println("nombre de usuario :: " + usuario.getNombreUsuario());
 		
+		boolean existeUsuario = validaUsuario(usuario.getNombreUsuario());
+		
+		System.out.println("existe Usuario :: " + existeUsuario);
+			
+	}
+	
+	private boolean validaUsuario(String nombreUsuario) {
+		boolean respuesta = false;
+		
+		User usuario = userService.findUserByNombreUsuario(nombreUsuario);
+		
+		if (usuario != null) {
+			respuesta = true;
+		}
+		
+		return respuesta;
 	}
 	
 	
@@ -46,7 +63,6 @@ public class UserController {
 			System.out.println("nombre :: " + usuario.getNombreUsuario());
 			System.out.println("estatus " + usuario.getEstatus());
 			System.out.println("fecha "  + usuario.getFechaCreacion());
-			System.out.println("nombre del perfil "  + usuario.getPerfil().getNombrePerfil());
 			System.out.println("======================================================");
 		});
 	}

@@ -5,7 +5,7 @@ spring:
 # Configuracion del dataSource    
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/quiniela?autoReconnect=true
+    url: jdbc:mysql://localhost:3306/practicamicroserviceuser?autoReconnect=true
     username: root
     password: Galletitas69/
     tomcat:
