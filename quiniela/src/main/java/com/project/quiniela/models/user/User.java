@@ -31,7 +31,7 @@ public class User implements Serializable {
 	private Long idUsuario;
 	
 	
-	@Column(name = "USER_NAME")
+	@Column(name = "NOMBRE_USUARIO")
 	private String nombreUsuario;
 	
 	
@@ -48,9 +48,9 @@ public class User implements Serializable {
 	
 	
 	
-	//@ManyToOne
-	//@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
-	//private Profile perfil;
+	@ManyToOne
+	@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
+	private Profile perfil;
 
 
 

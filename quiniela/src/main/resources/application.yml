@@ -20,7 +20,8 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      #sentencia que crea las tablas en automatico en relacion a los objetos mapeados
+      #ddl-auto: update
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     
