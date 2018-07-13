@@ -1,6 +1,7 @@
 package com.project.quiniela.models.user;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import com.project.quiniela.enums.NombrePerfil;
 
 
 @Entity
-@Table(name = "perfil")
+@Table(name = "PERFIL")
 public class Profile implements Serializable {
 
 	/**
@@ -28,9 +29,12 @@ public class Profile implements Serializable {
 	@Column(name = "ID_PERFIL")
 	private Long idPerfil;
 	
-	@Column(name = "DESCRIPCION_PERFIL")
+	@Column(name = "NOMBRE_PERFIL")
 	@Enumerated(EnumType.STRING)
 	private NombrePerfil nombrePerfil;
+	
+	@Column(name = "FECHA_CREACION")
+	private Date fechaCreacion;
 
 	public Long getIdPerfil() {
 		return idPerfil;
@@ -48,6 +52,15 @@ public class Profile implements Serializable {
 		this.nombrePerfil = nombrePerfil;
 	}
 
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	
 	
 
 }

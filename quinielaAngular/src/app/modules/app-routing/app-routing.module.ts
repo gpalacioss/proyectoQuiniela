@@ -1,7 +1,6 @@
 import { RouterModule, Routes} from '@angular/router';
 import { NgModule, Component } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
 import { AppComponent } from '../../app.component';
 
 

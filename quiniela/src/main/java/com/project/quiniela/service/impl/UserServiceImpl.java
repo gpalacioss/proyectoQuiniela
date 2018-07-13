@@ -15,9 +15,9 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 	
-	public void prueba(User usuario) {
+	public User saveOrUpdate(User usuario) {
 		
-		userDao.save(usuario);
+		return userDao.save(usuario);
 	}
 	
 	public List<User> findUserById(Long idUser){
@@ -31,6 +31,10 @@ public class UserServiceImpl implements UserService{
 	
 	public User findUserByNombreUsuario(String nombreUsuario) {
 		return userDao.findByNombreUsuario(nombreUsuario);
+	}
+	
+	public void deleteUser(Long idUsuario) {
+		userDao.deleteById(idUsuario);
 	}
 
 }

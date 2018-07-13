@@ -1,12 +1,10 @@
 package com.project.quiniela.models.user;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.project.quiniela.enums.EstatusUsuario;
-
 @Entity
-@Table(name = "usuario")
+@Table(name = "USUARIO")
 public class User implements Serializable {
 
 	/**
@@ -31,7 +27,7 @@ public class User implements Serializable {
 	private Long idUsuario;
 	
 	
-	@Column(name = "USER_NAME")
+	@Column(name = "NOMBRE_USUARIO")
 	private String nombreUsuario;
 	
 	
@@ -48,9 +44,9 @@ public class User implements Serializable {
 	
 	
 	
-	//@ManyToOne
-	//@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
-	//private Profile perfil;
+	@ManyToOne
+	@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
+	private Profile perfil;
 
 
 
@@ -112,5 +108,18 @@ public class User implements Serializable {
 		this.estatus = estatus;
 	}
 
+
+
+	public Profile getPerfil() {
+		return perfil;
+	}
+
+
+
+	public void setPerfil(Profile perfil) {
+		this.perfil = perfil;
+	}
+
+	
 
 }

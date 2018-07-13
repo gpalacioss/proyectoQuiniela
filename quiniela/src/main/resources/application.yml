@@ -5,7 +5,7 @@ spring:
 # Configuracion del dataSource    
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/practicamicroserviceuser?autoReconnect=true
+    url: jdbc:mysql://localhost:3306/quiniela?autoReconnect=true
     username: root
     password: Galletitas69/
     tomcat:
@@ -19,8 +19,10 @@ spring:
 #Permite que el sql se muestre en la consola
   jpa:
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      # esta senetencia crea la tablas en automatico en la base de datos segun los objetos mapeados
+      #ddl-auto: update
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     
