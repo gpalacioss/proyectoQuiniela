@@ -20,73 +20,73 @@ import com.project.quiniela.service.UserService;
 
 @RestController
 public class UserController {
-	
-	@Autowired
-	private UserService userService;
-	
-	private ObjectMapper objectMapper;
-	
-	@RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
-	public Response saveOrUpdateUser(@RequestBody String userJson) throws JsonParseException, JsonMappingException, IOException {
-		
-		objectMapper = new ObjectMapper();
-		
-		User usuario = objectMapper.readValue(userJson, User.class);
-		
-		System.out.println("nombre de usuario :: " + usuario.getNombreUsuario());
-		
-		if(!validaUsuario(usuario.getNombreUsuario()) || usuario.getIdUsuario() != null){
-			usuario.setFechaCreacion(new Date());
-			userService.saveOrUpdate(usuario);
-			return Response.accepted().build();
-		}else {
-			System.out.println("no guardo nada");
-			return Response.status(Response.Status.NOT_MODIFIED).build();
-		}
-		
-	}
-	
-	private boolean validaUsuario(String nombreUsuario) {
-		boolean respuesta = false;
-		
-		User usuario = userService.findUserByNombreUsuario(nombreUsuario);
-		
-		if (usuario != null) {
-			respuesta = true;
-		}
-		
-		return respuesta;
-	}
-	
-	@RequestMapping(value = "/existeUsuario", method = RequestMethod.POST)
-	public User validaUserLogin(@RequestBody String usuario) throws JsonParseException, JsonMappingException, IOException{
-		objectMapper = new ObjectMapper();
-		
-		User user = objectMapper.readValue(usuario, User.class);
-		
-		user = userService.findUserByNombreUsuario(user.getNombreUsuario());
-		return user;
-	}
-	
-	
-	@RequestMapping(value = "/getUsuarios", method = RequestMethod.GET)
-	public List<User> getUsuarios() {
-		
-		List<User> result = userService.findUser();
-		
-		return result;
-	}
-	
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
-	public void deleteUsuario(@RequestBody String jsonUsuario) throws JsonParseException, JsonMappingException, IOException {
-		
-		objectMapper = new ObjectMapper();
-		
-		User usuario = objectMapper.readValue(jsonUsuario, User.class);
-		
-		if (usuario.getIdUsuario() != null) {
-			userService.deleteUser(usuario.getIdUsuario());
-		}
-	}
+
+    @Autowired
+    private UserService userService;
+
+    private ObjectMapper objectMapper;
+
+    @RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
+    public Response saveOrUpdateUser(@RequestBody String userJson) throws JsonParseException, JsonMappingException, IOException {
+
+        objectMapper = new ObjectMapper();
+
+        User usuario = objectMapper.readValue(userJson, User.class);
+
+        System.out.println("nombre de usuario :: " + usuario.getNombreUsuario());
+
+        if(!validaUsuario(usuario.getNombreUsuario()) || usuario.getIdUsuario() != null){
+            usuario.setFechaCreacion(new Date());
+            userService.saveOrUpdate(usuario);
+            return Response.accepted().build();
+        }else {
+            System.out.println("no guardo nada");
+            return Response.status(Response.Status.NOT_MODIFIED).build();
+        }
+
+    }
+
+    private boolean validaUsuario(String nombreUsuario) {
+        boolean respuesta = false;
+
+        User usuario = userService.findUserByNombreUsuario(nombreUsuario);
+
+        if (usuario != null) {
+            respuesta = true;
+        }
+
+        return respuesta;
+    }
+
+    @RequestMapping(value = "/existeUsuario", method = RequestMethod.POST)
+    public User validaUserLogin(@RequestBody String usuario) throws JsonParseException, JsonMappingException, IOException{
+        objectMapper = new ObjectMapper();
+
+        User user = objectMapper.readValue(usuario, User.class);
+
+        user = userService.findUserByNombreUsuario(user.getNombreUsuario());
+        return user;
+    }
+
+
+    @RequestMapping(value = "/getUsuarios", method = RequestMethod.GET)
+    public List<User> getUsuarios() {
+
+        List<User> result = userService.findUser();
+
+        return result;
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    public void deleteUsuario(@RequestBody String jsonUsuario) throws JsonParseException, JsonMappingException, IOException {
+
+        objectMapper = new ObjectMapper();
+
+        User usuario = objectMapper.readValue(jsonUsuario, User.class);
+
+        if (usuario.getIdUsuario() != null) {
+            userService.deleteUser(usuario.getIdUsuario());
+        }
+    }
 
 }

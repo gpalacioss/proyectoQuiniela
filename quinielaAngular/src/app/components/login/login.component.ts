@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   private validaUsuarioLogin(): void{
-   
+
 
     this.loginService.validaUsuarioLogin("gpalacios","12345").subscribe(result => {
 
@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
       }else{
         console.log("usario incorrecto");
       }
-  
-  
+
+
       if(this.usuario["password"] = "12345"){
         console.log("password correcto");
       }else{

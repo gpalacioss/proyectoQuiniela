@@ -19,48 +19,48 @@ import com.project.quiniela.enums.NombrePerfil;
 @Table(name = "PERFIL")
 public class Profile implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PERFIL")
-	private Long idPerfil;
-	
-	@Column(name = "NOMBRE_PERFIL")
-	@Enumerated(EnumType.STRING)
-	private NombrePerfil nombrePerfil;
-	
-	@Column(name = "FECHA_CREACION")
-	private Date fechaCreacion;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public Long getIdPerfil() {
-		return idPerfil;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_PERFIL")
+    private Long idPerfil;
 
-	public void setIdPerfil(Long idPerfil) {
-		this.idPerfil = idPerfil;
-	}
+    @Column(name = "NOMBRE_PERFIL")
+    @Enumerated(EnumType.STRING)
+    private NombrePerfil nombrePerfil;
 
-	public NombrePerfil getNombrePerfil() {
-		return nombrePerfil;
-	}
+    @Column(name = "FECHA_CREACION")
+    private Date fechaCreacion;
 
-	public void setNombrePerfil(NombrePerfil nombrePerfil) {
-		this.nombrePerfil = nombrePerfil;
-	}
+    public Long getIdPerfil() {
+        return idPerfil;
+    }
 
-	public Date getFechaCreacion() {
-		return fechaCreacion;
-	}
+    public void setIdPerfil(Long idPerfil) {
+        this.idPerfil = idPerfil;
+    }
 
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
+    public NombrePerfil getNombrePerfil() {
+        return nombrePerfil;
+    }
 
-	
-	
+    public void setNombrePerfil(NombrePerfil nombrePerfil) {
+        this.nombrePerfil = nombrePerfil;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+
+
 
 }

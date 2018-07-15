@@ -11,28 +11,28 @@ import com.project.quiniela.service.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	public User saveOrUpdate(User usuario) {
-		
+
 		return userDao.save(usuario);
 	}
-	
+
 	public List<User> findUserById(Long idUser){
 		return userDao.findByIdUsuario(idUser);
 	}
-	
-	
+
+
 	public List<User> findUser(){
 		return userDao.findAll();
 	}
-	
+
 	public User findUserByNombreUsuario(String nombreUsuario) {
 		return userDao.findByNombreUsuario(nombreUsuario);
 	}
-	
+
 	public void deleteUser(Long idUsuario) {
 		userDao.deleteById(idUsuario);
 	}
