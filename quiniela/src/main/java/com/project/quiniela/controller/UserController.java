@@ -58,12 +58,6 @@ public class UserController {
 		List<User> result = userService.findUser();
 		
 		result.forEach(usuario -> {
-			
-			System.out.println("======================================================");
-			System.out.println("nombre :: " + usuario.getNombreUsuario());
-			System.out.println("estatus " + usuario.getEstatus());
-			System.out.println("fecha "  + usuario.getFechaCreacion());
-			System.out.println("======================================================");
 		});
 	}
 
