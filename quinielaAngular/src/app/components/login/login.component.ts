@@ -1,5 +1,4 @@
 import { UserModel } from './../../models/user/user.model';
-import { UserComponent } from './../user/user.component';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../service/login/login.service';
 
@@ -12,36 +11,47 @@ import { LoginService } from '../../service/login/login.service';
 export class LoginComponent implements OnInit {
 
   private usuario : UserModel;
+  private isValido : boolean = true;
+  private message: String;
 
-  constructor( private loginService: LoginService) { }
-
-  ngOnInit() {
-    this.validaUsuarioLogin();
+  constructor( private loginService: LoginService) { 
+    this.usuario = new UserModel();
   }
 
-  private validaUsuarioLogin(): void{
+  ngOnInit() {
+    
+  }
 
 
-    this.loginService.validaUsuarioLogin("gpalacios","12345").subscribe(result => {
+  private saveOrUpdateUsuario(): void{
 
-      console.log("despues de ir al servicio");
+    if(this.isValido = this.loginService.validaCamposObligatorios(this.usuario)){
 
-      this.usuario = result;
+      this.loginService.saveOrUpdate(this.usuario).subscribe(result => {
 
-      if(this.usuario["nombreUsuario"] = "gpalacios"){
-        console.log("usario correcto");
-      }else{
-        console.log("usario incorrecto");
-      }
-
-
-      if(this.usuario["password"] = "12345"){
-        console.log("password correcto");
-      }else{
-        console.log("password incorrecto");
-      }
-
-    });
+        if(result != null){
+  
+          this.usuario = result;
+  
+          if(this.usuario.nombreUsuario != result.nombreUsuario){
+            this.message = "usario incorrecto";
+            this.isValido = false;
+          }
+    
+          if(this.usuario.password != result.password){
+            this.message = "password incorrecto";
+            this.isValido = false;
+          }
+  
+        }else{
+            this.message = "El usario no existe";
+            this.isValido = false;
+        }
+      
+      });
+    }else{
+      this.message = "Los campos no pueden estar vacios";
+    }
 
   }
 

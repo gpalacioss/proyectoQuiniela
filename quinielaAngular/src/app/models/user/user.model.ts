@@ -2,21 +2,18 @@ import { ProfileModel } from "./profile.model";
 
 export class UserModel {
 
-	constructor(usario: String){
-		this.nombreUsuario = usario
-	}
 
-	private  idUsuario : number;
+	public  idUsuario : number;
 
-	private  nombreUsuario : String;
+	public  nombreUsuario : String;
 
-	private  password : String;
+	public  password : String;
 
-	//private  fechaCreacion : Date;
+	public  fechaCreacion : Date;
 
-    private estatus : boolean;
+    public estatus : boolean;
 
-	private  perfil : ProfileModel;
+	public  perfil : ProfileModel;
 
 
 

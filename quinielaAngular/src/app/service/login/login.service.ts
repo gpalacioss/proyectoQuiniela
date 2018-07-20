@@ -7,17 +7,34 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LoginService {
 
-  private usuario: UserModel;
 
   constructor(private http: HttpClient) { }
 
+  public validaCamposObligatorios(usuario : UserModel): boolean{
 
-  public validaUsuarioLogin(nombreUsuario: String, password: String): Observable <UserModel>{
+    let isValido : boolean = true;
 
-    let user = new UserModel(nombreUsuario);
-    let jsonUsuario = JSON.stringify(user);
+    console.log("Valor Usario private :: " + usuario['nombreUsuario'])
+    //console.log("Valor Usario publico :: " + usuario.nombreUsuario)
 
-    console.log(user);
+    if(!usuario['nombreUsuario']){
+      isValido = false;
+    }
+
+    if(!usuario.password){
+      isValido = false;
+    }
+
+    return isValido;
+
+  }
+
+
+  public saveOrUpdate(usuario : UserModel): Observable <UserModel>{
+
+    let jsonUsuario = JSON.stringify(usuario);
+
+    console.log(usuario);
 
     console.log("funciona y entro al servicio");
 
