@@ -38,7 +38,7 @@ export class LoginService {
 
     console.log("funciona y entro al servicio");
 
-    return this.http.post<UserModel>("http://localhost:8080/existeUsuario", jsonUsuario);
+    return this.http.post<UserModel>("http://localhost:8080/existeUsuario", jsonUsuario).shareReplay();
   }
 
 }

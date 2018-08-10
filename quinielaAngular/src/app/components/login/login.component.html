@@ -3,10 +3,9 @@
   <div class="row" class="form-login">
 
     <div ng-if="!isvalido" class="alert alert-danger" role="alert">
-         {{message}}
+      {{message}}
     </div>
-
-
+   
     <form action="form-horizontal" role="form">
       <div class="form-group">
         <input type="text" class="form-control" id="inputNombreUsuario" name="nombreUsuario" [(ngModel)]="usuario.nombreUsuario" placeholder="Usuario">
@@ -18,14 +17,7 @@
         <button type="button" class="btn btn-success" (click) = "saveOrUpdateUsuario()" data-toggle="tooltip" >Aceptar</button>
       </div>
 
-
     </form>
   </div>
-
-  <script>
-      $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();   
-      });
-      </script>
 
 </div>

@@ -29,20 +29,8 @@ export class LoginComponent implements OnInit {
 
       this.loginService.saveOrUpdate(this.usuario).subscribe(result => {
 
-        if(result != null){
-  
-          this.usuario = result;
-  
-          if(this.usuario.nombreUsuario != result.nombreUsuario){
-            this.message = "usario incorrecto";
-            this.isValido = false;
-          }
-    
-          if(this.usuario.password != result.password){
-            this.message = "password incorrecto";
-            this.isValido = false;
-          }
-  
+        if(result != null && this.validaDatosCorrectos(result)){
+            //aqui tendria que regresar el token
         }else{
             this.message = "El usario no existe";
             this.isValido = false;
@@ -53,6 +41,21 @@ export class LoginComponent implements OnInit {
       this.message = "Los campos no pueden estar vacios";
     }
 
+  }
+
+  private validaDatosCorrectos(result : UserModel): boolean{
+
+    if(this.usuario.nombreUsuario != result.nombreUsuario){
+      this.message = "usario incorrecto";
+      this.isValido = false;
+    }
+
+    if(this.usuario.password != result.password){
+      this.message = "password incorrecto";
+      this.isValido = false;
+    }
+
+    return this.isValido;
   }
 
 }
