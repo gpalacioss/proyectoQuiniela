@@ -1,4 +1,4 @@
-package com.project.quiniela.controller;
+package com.project.quiniela.controller.user;
 
 import java.io.IOException;
 import java.util.Date;
@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,9 @@ public class UserController {
 	
 	private ObjectMapper objectMapper;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
 	public Response saveOrUpdateUser(@RequestBody String userJson) throws JsonParseException, JsonMappingException, IOException {
 		
@@ -37,6 +41,7 @@ public class UserController {
 		
 		if(!validaUsuario(usuario.getNombreUsuario()) || usuario.getIdUsuario() != null){
 			usuario.setFechaCreacion(new Date());
+			usuario.setPassword(bcryptPasswordEncoder.encode(usuario.getPassword()));
 			userService.saveOrUpdate(usuario);
 			return Response.accepted().build();
 		}else {
