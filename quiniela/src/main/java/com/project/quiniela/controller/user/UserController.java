@@ -37,9 +37,9 @@ public class UserController {
 		
 		User usuario = objectMapper.readValue(userJson, User.class);
 		
-		System.out.println("nombre de usuario :: " + usuario.getNombreUsuario());
+		System.out.println("nombre de usuario :: " + usuario.getUsername());
 		
-		if(!validaUsuario(usuario.getNombreUsuario()) || usuario.getIdUsuario() != null){
+		if(!validaUsuario(usuario.getUsername()) || usuario.getIdUsuario() != null){
 			usuario.setFechaCreacion(new Date());
 			usuario.setPassword(bcryptPasswordEncoder.encode(usuario.getPassword()));
 			userService.saveOrUpdate(usuario);
@@ -69,7 +69,7 @@ public class UserController {
 		
 		User user = objectMapper.readValue(usuario, User.class);
 		
-		user = userService.findUserByNombreUsuario(user.getNombreUsuario());
+		user = userService.findUserByNombreUsuario(user.getUsername());
 		return user;
 	}
 	
@@ -78,6 +78,11 @@ public class UserController {
 	public List<User> getUsuarios() {
 		
 		List<User> result = userService.findUser();
+		result.forEach(user -> {
+			System.out.println("ffef" + user.getUsername());
+			System.out.println("dfds" + user.getPassword());
+			System.out.println("fsdf");
+		});
 		
 		return result;
 	}

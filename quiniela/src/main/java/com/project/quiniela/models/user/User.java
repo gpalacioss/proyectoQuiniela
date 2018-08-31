@@ -2,6 +2,8 @@ package com.project.quiniela.models.user;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "user")
 public class User implements Serializable {
 
 	/**
@@ -23,12 +26,12 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_USUARIO")
+	@Column(name = "ID_USER")
 	private Long idUsuario;
 	
 	
-	@Column(name = "NOMBRE_USUARIO")
-	private String nombreUsuario;
+	@Column(name = "USERNAME")
+	private String username;
 	
 	
 	@Column(name = "PASSWORD")
@@ -44,9 +47,10 @@ public class User implements Serializable {
 	
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_PERFIL", referencedColumnName = "ID_PERFIL")
-	private Profile perfil;
+	@ManyToMany
+	@JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")},
+	inverseJoinColumns = {@JoinColumn(name = "ID_ROLE", referencedColumnName = "ID_ROLE")})
+	private Set<Role> roles;
 
 
 
@@ -62,14 +66,14 @@ public class User implements Serializable {
 
 
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getUsername() {
+		return username;
 	}
 
 
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
@@ -110,16 +114,14 @@ public class User implements Serializable {
 
 
 
-	public Profile getPerfil() {
-		return perfil;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 
 
-	public void setPerfil(Profile perfil) {
-		this.perfil = perfil;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
-
-	
 
 }

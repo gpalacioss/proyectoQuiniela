@@ -14,7 +14,7 @@ public interface UserDao extends JpaRepository<User, Long>{
 	@SuppressWarnings("unchecked")
 	User save(User usuario);
 	
-	User findByNombreUsuario(String nombreusuario);
+	User findByUsername(String nombreusuario);
 	
 	List<User> findByIdUsuario(Long idUsuario);
 	

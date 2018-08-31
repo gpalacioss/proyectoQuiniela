@@ -7,7 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,13 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.quiniela.config.security.JwtAuthenticationRequest;
 import com.project.quiniela.config.security.JwtTokenUtil;
-import com.project.quiniela.models.security.TokenAutenticado;
-import com.project.quiniela.models.user.User;
+import com.project.quiniela.models.security.JwtAuthenticationResponse;
 import com.project.quiniela.service.UserService;
 
 @RestController
 @RequestMapping(value = "/token")
-public class AuthenticationController {
+public class AuthenticationRestController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -32,22 +34,21 @@ public class AuthenticationController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@RequestMapping(value = "/genera-token", method = RequestMethod.POST)
 	public ResponseEntity<?> register(@RequestBody JwtAuthenticationRequest jwtAuthenticationRequest) throws AuthenticationException{
 		
-		final Authentication autenticacion = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(
-						jwtAuthenticationRequest.getUsername(), 
-						jwtAuthenticationRequest.getPassword()
-				)
-		);
+		final UserDetails user = (UserDetails) userDetailsService.loadUserByUsername(jwtAuthenticationRequest.getUsername());
 		
-		SecurityContextHolder.getContext().setAuthentication(autenticacion);
+		UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
+		//Authentication auth = authenticationManager.authenticate(authReq);
+		SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+		securityContext.setAuthentication(authReq);
 		
-		final User usuario = userService.findUserByNombreUsuario(jwtAuthenticationRequest.getUsername());
-		final String token = jwtTokenUtil.generateToken(usuario);
-		return ResponseEntity.ok(new TokenAutenticado(token));
+		final String token = jwtTokenUtil.generateToken(user);
+		return ResponseEntity.ok(new JwtAuthenticationResponse(token));
 	}
 
 }

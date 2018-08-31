@@ -2,6 +2,7 @@ spring:
   application:
     name: quiniela
     
+
 # Configuracion del dataSource
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -21,10 +22,9 @@ spring:
     show-sql: true
     hibernate:
       #sentencia que crea las tablas en automatico en relacion a los objetos mapeados
-      #ddl-auto: update
+      ddl-auto: update
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-        
-
-
-    
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true

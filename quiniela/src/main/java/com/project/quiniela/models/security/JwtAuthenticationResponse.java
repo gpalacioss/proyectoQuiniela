@@ -2,7 +2,7 @@ package com.project.quiniela.models.security;
 
 import java.io.Serializable;
 
-public class TokenAutenticado implements Serializable{
+public class JwtAuthenticationResponse implements Serializable{
 	
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class TokenAutenticado implements Serializable{
 	
 	private String token;
 	
-	public TokenAutenticado(String token) {
+	public JwtAuthenticationResponse(String token) {
 		this.token = token;
 	}
 

@@ -2,8 +2,8 @@ package com.project.quiniela.enums;
 
 public enum NombrePerfil {
 	
-	ADMINISTRADOR,
+	ROLE_ADMIN,
 	
-	PARTICIPANTE
+	ROLE_USER
 
 }

@@ -1,6 +1,7 @@
 package com.project.quiniela.config.security;
 
 import javax.annotation.Resource;
+import javax.ws.rs.HttpMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,12 +47,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	protected void configure(HttpSecurity http) throws Exception{
 		http.cors().and().csrf().disable()
-		.authorizeRequests()
-		.antMatchers("/token/*").permitAll()
-		.anyRequest().authenticated()
-		.and()
 		.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+		.antMatchers(
+                HttpMethod.GET,
+                "/",
+                "/*.html",
+                "/favicon.ico",
+                "/**/*.html",
+                "/**/*.css",
+                "/**/*.js"
+        ).permitAll()
+		.antMatchers("/token/*").permitAll()
+		.antMatchers("/getUsuarios").permitAll()
+		.antMatchers("/saveUsuario").permitAll()
+		.anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}
