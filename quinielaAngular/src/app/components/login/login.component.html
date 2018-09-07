@@ -2,19 +2,20 @@
 
   <div class="row" class="form-login">
 
-    <div ng-if="!isvalido" class="alert alert-danger" role="alert">
+    <div *ngIf="!isvalido" class="alert alert-danger">
       {{message}}
     </div>
    
     <form action="form-horizontal" role="form">
+
       <div class="form-group">
-        <input type="text" class="form-control" id="inputNombreUsuario" name="nombreUsuario" [(ngModel)]="usuario.nombreUsuario" placeholder="Usuario">
+        <input matInput type="text" class="form-control" id="inputUsername" name="username" [(ngModel)]="usuario.username" placeholder="Usuario">
         <br>
         <input type="password" class="form-control" id="inputPassword" name="password" [(ngModel)]="usuario.password" placeholder="Password">
       </div>
 
       <div class="form-group" >
-        <button type="button" class="btn btn-success" (click) = "saveOrUpdateUsuario()" data-toggle="tooltip" >Aceptar</button>
+        <button type="button" class="btn btn-success" (click) = "login()" data-toggle="tooltip" >Aceptar</button>
       </div>
 
     </form>

@@ -1,4 +1,3 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { UserModel } from './../../models/user/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,10 +13,10 @@ export class LoginService {
 
     let isValido : boolean = true;
 
-    console.log("Valor Usario private :: " + usuario['nombreUsuario'])
+    console.log("Valor Usario private :: " + usuario['username'])
     //console.log("Valor Usario publico :: " + usuario.nombreUsuario)
 
-    if(!usuario['nombreUsuario']){
+    if(!usuario['username']){
       isValido = false;
     }
 
@@ -38,7 +37,7 @@ export class LoginService {
 
     console.log("funciona y entro al servicio");
 
-    return this.http.post<UserModel>("http://localhost:8080/existeUsuario", jsonUsuario).shareReplay();
+    return this.http.post<UserModel>("http://localhost:8080/existeUsuario", jsonUsuario);
   }
 
 }

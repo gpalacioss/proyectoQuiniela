@@ -5,7 +5,7 @@ export class UserModel {
 
 	public  idUsuario : number;
 
-	public  nombreUsuario : String;
+	public  username : String;
 
 	public  password : String;
 
